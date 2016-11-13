@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
   #   render text: page
   # end
 
-
+  rescue_from CanCan::AccessDenied do |exception|
+  redirect_to root_path
+    flash[:alert] = "Sorry, you are not authorized to access this area!"
+  end
 
 end

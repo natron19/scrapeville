@@ -1,8 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+ <div class="pull-left padding">
+  <% if @newsville.image_url.present? %>
+  <%= image_tag @newsville.image_url, class: 'img-rounded' %>
+  <% else %>
+  <%= image_tag 'no-image.png', class: 'img-rounded' %>
+  <% end %>
+</div>
+
+
 <p>
   <strong>View </strong>
-  <%= link_to "Original Story", @newsville.title_url, :target => "_blan" %>
+  <%= link_to "Original Story", @newsville.title_url, :target => "_blank" %>
 </p>
 
 <p>
@@ -21,12 +30,7 @@
 </p>
 
 <p>
-  <strong>Story Image:</strong><br />
-  <% if @newsville.image_url.present? %>
-  <%= image_tag @newsville.image_url %>
-  <% else %>
-  <%= image_tag 'no-image.png' %>
-  <% end %>
+  <strong></strong><br />
 </p>
 
 <%= link_to 'Back to Newsvilles', newsvilles_path, class: 'btn btn-info btn-xs' %>
@@ -35,7 +39,7 @@
 
 <%= render @newsville.comments %>
 <%= simple_form_for [@newsville, Comment.new] do |comment| %>
-  <%= comment.input :body %>
+  <%= comment.input :body, label: false, placeholder: "Add a comment here" %>
   <%= comment.submit "Add Comment", class: "btn btn-danger" %>
 <% end %>
 
